@@ -38,5 +38,5 @@ def movement():
 #main loop
 while True:
     wn.update()
-    mov()
+    movement()
     time.sleep(stay)
