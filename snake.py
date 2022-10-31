@@ -11,6 +11,14 @@ wn.bgcolor("black")
 wn.setup(width= 600, height= 600)
 wn.tracer(0)
 
+#Food
+food = turtle.Turtle()
+food.speed(0)
+food.color("red")
+food.shape("circle")
+food.penup()
+food.goto(0, 100)
+
 #Head of the snake
 head = turtle.Turtle()
 head.speed(0)
@@ -20,13 +28,8 @@ head.penup()
 head.goto(0,0)
 head.direction = "stop"
 
-#Food
-food = turtle.Turtle()
-food.speed(0)
-food.color("red")
-food.shape("circle")
-food.penup()
-food.goto(0, 100)
+#Body of the snake
+segment = []
 
 #Movement
 def up():
@@ -63,8 +66,30 @@ wn.onkeypress(right, "Right")
 while True:
     wn.update()
     if head.distance(food) < 20:
+
+        #Random food
         x = random.randint(-280, 280)
         y = random.randint(-280, 280)
         food.goto(x, y)
+
+        #Growing body
+        new_segment = turtle.Turtle()
+        new_segment.speed(0)
+        new_segment.color("grey")
+        new_segment.shape("square")
+        new_segment.penup()
+        segment.append(new_segment)
+
+        #Body movement
+    totalSegment = len(segment)
+    for i in range(totalSegment -1, 0, -1):
+        x = segment[i - 1].xcor()
+        y = segment[i - 1].ycor()
+        segment[i].goto(x,y)
+
+    if totalSegment > 0:
+        x = head.xcor()
+        y = head.ycor()
+        segment[0].goto(x,y)
     movement()
     time.sleep(stay)
