@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import turtle
 import time
 import random
@@ -49,7 +50,7 @@ food = create_element(
     "circle", 
     {
         "x": 0, 
-        "y": 210
+        "y": 100
     } 
     )
 
